@@ -15,14 +15,13 @@ macchina o controllare i ricambi sotto scorta.
 
 \paragraph{Macchina.}
 Di ogni macchina installata si registrano matricola, anno di installazione, posizione nell'impianto
-all'interno dello stabile del cliente e contatori di utilizzo (ore di funzionamento e cicli). Ogni
-macchina è un esemplare di un tipo di macchina (modello) del catalogo System Logistics, con codice,
+all'interno dello stabile del cliente e contatori di utilizzo (ore di funzionamento e cicli). \evid{IO}{Ogni macchina è un esemplare di un tipo di macchina (modello)} del catalogo System Logistics, con codice,
 categoria (traslo-elevatore, trasportatore, LGV), portata e velocità nominali.
 
 \paragraph{Componente.}
 Per ogni tipo è definito il piano di manutenzione preventiva: un elenco di attività, ognuna con
-descrizione e periodicità (in ore di funzionamento o in giorni). Ogni macchina è composta da
-componenti sostituibili (es.\ motore, gruppo forche, cinghie o cuscinetti). Ogni componente è
+descrizione e periodicità (in ore di funzionamento o in giorni). \evid{PO}{Ogni macchina è composta da
+componenti} sostituibili (es.\ motore, gruppo forche, cinghie o cuscinetti). Ogni componente è
 individuato nella macchina da un codice di posizione e ha data di montaggio, ore di funzionamento e
 solo se prevista una vita utile; quando le ore si avvicinano alla vita utile il sistema ne propone la
 sostituzione.
@@ -32,9 +31,7 @@ Quando una macchina si ferma per un errore, il PLC invia un allarme che il siste
 guasto, con istante, codice di errore, descrizione e gravità. Un guasto resta aperto finché non è
 risolto, ma non è detto serva un tecnico per risolverlo.
 Ogni intervento riguarda una macchina o un gruppo di macchine ed ha numero, data, orari di inizio e
-fine, descrizione del lavoro ed esito. Gli interventi si distinguono in preventivi e correttivi: i
-primi svolgono le attività del piano giunte a scadenza; i secondi risolvono uno o più guasti e
-registrano la causa individuata e la durata del fermo.
+fine, descrizione del lavoro ed esito. \evid{G}{Gli interventi si distinguono in preventivi e correttivi}: i primi svolgono le attività del piano giunte a scadenza; i secondi risolvono uno o più guasti e registrano la causa individuata e la durata del fermo.
 Di ogni ricambio conservato nel deposito si registrano codice, descrizione, quantità disponibile,
 scorta minima e componenti che può sostituire (in quanto un componente può sostituire più componenti
 con poche modifiche). Per ogni intervento si registrano i ricambi prelevati e le quantità; sotto la
