@@ -1,0 +1,52 @@
+%---------------------------------------------------------
+\subsection{Vista B -- Glossario e schema scheletro}
+\label{sec:an-B}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.0cm} Y >{\raggedright\arraybackslash}p{3.4cm} >{\raggedright\arraybackslash}p{5.4cm}@{}}
+\toprule
+\textbf{Termine} & \textbf{Descrizione} & \textbf{Sinonimi} & \textbf{Collegamenti} \\
+\midrule
+Macchina   & Esemplare in servizio nel sito  & Apparecchiatura   & Componente, Guasto, Intervento \\
+Componente & Parte sostituibile di macchina  & Gruppo, organo    & Macchina, Ricambio \\
+Guasto     & Malfunzionamento di macchina    & Allarme, errore   & Macchina, Intervento \\
+Intervento & Lavoro svolto su una macchina   & Ordine di lavoro  & Macchina, Guasto, Tecnico, Ricambio \\
+Tecnico    & Addetto all'assistenza tecnica  & Manutentore       & Intervento \\
+Ricambio   & Pezzo a scorta nel deposito     & Pezzo di ricambio & Componente, Intervento \\
+\bottomrule
+\end{tabularx}
+\caption{Glossario dei concetti della vista B.}
+\label{tab:gloss-B}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  % entita'
+  \node[entita] (gua) at (0,2.8)    {Guasto};
+  \node[entita] (mac) at (6.8,2.8)  {Macchina};
+  \node[entita] (com) at (13.6,2.8) {Componente};
+  \node[entita] (int) at (6.8,0)    {Intervento};
+  \node[entita] (ric) at (13.6,0)   {Ricambio};
+  \node[entita] (tec) at (6.8,-2.8) {Tecnico};
+  % relazioni
+  \node[relazione] (seg) at (3.4,2.8)  {Segnalazione};
+  \node[relazione] (cmp) at (10.2,2.8) {Composizione};
+  \node[relazione] (man) at (6.8,1.4)  {Manutenzione};
+  \node[relazione] (cpt) at (13.6,1.4) {Compatibilità};
+  \node[relazione] (ris) at (3.4,0)    {Risoluzione};
+  \node[relazione] (uti) at (10.2,0)   {Utilizzo};
+  \node[relazione] (par) at (6.8,-1.4) {Partecipazione};
+  % collegamenti
+  \draw (gua) -- (seg) -- (mac);
+  \draw (mac) -- (cmp) -- (com);
+  \draw (mac) -- (man) -- (int);
+  \draw (com) -- (cpt) -- (ric);
+  \draw (gua) |- (ris) -- (int);
+  \draw (int) -- (uti) -- (ric);
+  \draw (int) -- (par) -- (tec);
+\end{tikzpicture}
+\caption{Schema scheletro della vista B.}
+\label{fig:sch-B}
+\end{figure}

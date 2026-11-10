@@ -1,0 +1,42 @@
+%---------------------------------------------------------
+\subsection{Vista C -- Analista delle prestazioni e del gemello digitale}
+\label{sec:req-C}
+L'analista monitora il comportamento dell'impianto a partire dai dati di campo e confronta le
+prestazioni reali con quelle previste dal \concetto{gemello digitale}~\cite{kritzinger2018}.
+Consulta l'andamento delle misure dei \concetto{sensori} e gli \concetto{eventi} delle
+\concetto{macchine}, calcola gli \concetto{indicatori} a fine turno, definisce gli \concetto{scenari}
+e ne avvia la simulazione, e confronta valori reali e previsti per individuare le \concetto{macchine}
+che non raggiungono gli obiettivi.
+
+\paragraph{Sensori e misure.}
+I dati di campo provengono dai \concetto{sensori}, ciascuno con codice, grandezza misurata (corrente,
+energia, temperatura, vibrazioni), unità di misura e intervallo di campionamento.
+\evid{G}{I \concetto{sensori} si distinguono in sensori di macchina, montati su una
+\concetto{macchina}, e sensori ambientali}, collocati in una zona dell'impianto (es.\ la baia di
+carico refrigerata) e con un intervallo di valori ammessi. Ogni misura riporta \concetto{sensore},
+istante e valore.
+
+\paragraph{Eventi.}
+Ogni \concetto{evento} è comunicato da una \concetto{macchina} in un istante.
+\evid{G}{Gli \concetto{eventi} si distinguono in cambi di stato, allarmi e fine missione}: un
+cambio di stato riporta lo stato precedente e il nuovo (in lavoro, in attesa, in errore, in
+manutenzione), un allarme ha codice e gravità, un \concetto{evento} di fine missione indica la
+missione completata e la durata del ciclo.
+
+\paragraph{Indicatori.}
+Da \concetto{eventi} e misure si calcolano gli \concetto{indicatori} di prestazione
+(KPI)~\cite{iso22400}, come disponibilità, throughput (UDC movimentate all'ora), tempo medio di ciclo
+ed energia per missione. Ogni \concetto{indicatore} ha codice, nome, formula, unità di misura, valore
+obiettivo e soglia di scostamento ammessa, ed è calcolato a fine turno per ogni \concetto{macchina}.
+
+\paragraph{Gemello digitale e scenari.}
+Il \concetto{gemello digitale} è il modello di simulazione dell'impianto, alimentato dai dati di campo,
+e contiene i parametri di funzionamento di ogni \concetto{macchina} (velocità, accelerazioni, tempi di
+presa e deposito). Ogni sua versione ha numero, data di calibrazione, errore medio rispetto ai dati
+reali e livello di integrazione con l'impianto (modello digitale, ombra digitale o gemello
+digitale~\cite{kritzinger2018}). L'analista definisce \concetto{scenari}, ciascuno con nome,
+descrizione e condizioni ipotizzate (profilo degli ordini, \concetto{macchine} fuori servizio,
+parametri modificati). \evid{IO}{Ogni simulazione è un'esecuzione concreta di uno
+\concetto{scenario}} su una versione del \concetto{gemello digitale}, con data e durata, e produce il
+valore previsto di ogni \concetto{indicatore} per ogni \concetto{macchina}, da confrontare con il
+valore reale.

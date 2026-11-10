@@ -1,0 +1,55 @@
+%---------------------------------------------------------
+\subsection{Vista A -- Responsabile delle operazioni di magazzino}
+\label{sec:req-A}
+Il responsabile delle operazioni di magazzino gestisce i flussi fisici della merce, dal ricevimento
+allo stoccaggio, fino al prelievo e alla spedizione. È un dipendente del committente e lavora con il
+WMS di SYSTORE~\cite{sl_systore}: registra l'arrivo delle \concetto{UDC} dalla produzione, consulta
+le giacenze per \concetto{articolo}, lotto e \concetto{ubicazione}, blocca e sblocca i lotti,
+individua quelli prossimi alla scadenza, rilascia gli \concetto{ordini} di spedizione seguendone
+l'avanzamento e controlla le \concetto{missioni} in corso su ogni \concetto{macchina}.
+
+\paragraph{Articoli e lotti.}
+Di ogni \concetto{articolo} prodotto dal committente si registrano codice, descrizione, formato di
+vendita (es.\ «bottiglia da 1,5\,l, confezione da 6»), colli per pallet e durata di conservazione.
+La merce arriva per lotti di produzione: \evid{IO}{ogni lotto è una produzione concreta di un
+\concetto{articolo}} ed è identificato dal codice dell'\concetto{articolo} e da un codice di lotto,
+con data di produzione e di scadenza. Il controllo qualità può bloccare un lotto, che allora non può
+essere spedito.
+
+\paragraph{Unità di carico.}
+La merce è movimentata e stoccata su \concetto{UDC} (unità di carico): pallet o, nelle aree di
+picking, contenitori. Ogni \concetto{UDC} ha un codice univoco (SSCC), un tipo, un'altezza e un peso
+misurati al ricevimento. Di norma contiene un solo \concetto{articolo}, ma i pallet misti composti in
+picking ne contengono più di uno; per ogni \concetto{articolo} contenuto si registrano lotto e numero
+di colli.
+
+\paragraph{Ubicazioni.}
+Un'\concetto{ubicazione} è una posizione che può ospitare una \concetto{UDC}, con un codice e uno
+stato (libera, occupata, bloccata). \evid{G}{Le \concetto{ubicazioni} si dividono in celle e baie}.
+Il magazzino è diviso in corridoi, ognuno servito da un traslo-elevatore, e \evid{PO}{ogni corridoio
+è composto da celle}: una cella è individuata nel corridoio da lato, colonna, livello e profondità, ha
+altezza e portata massime e ospita al più una \concetto{UDC}. Le baie sono i punti di scambio con
+l'esterno del magazzino e hanno un tipo (ingresso, uscita, picking, carico).
+
+\paragraph{Missioni.}
+Ogni spostamento di una \concetto{UDC} da un'\concetto{ubicazione} di origine a una di destinazione è
+una \concetto{missione}, creata dal WMS con codice, priorità, stato (in coda, in esecuzione,
+completata, annullata) e istanti di creazione, inizio e fine. \evid{G}{Le \concetto{missioni} si
+distinguono in \concetto{missioni} di ingresso, di uscita e di trasferimento}: le prime portano una
+\concetto{UDC} da una baia a una cella e registrano l'esito del controllo di sagoma e peso; le seconde
+la portano da una cella a una baia per evadere un \concetto{ordine}; le terze la spostano tra due
+celle o tra due baie e ne registrano il motivo.
+
+\paragraph{Macchine.}
+Le \concetto{missioni} sono eseguite dalle \concetto{macchine} dell'impianto: traslo-elevatori,
+navette SVL, shuttle car, trasportatori e LGV~\cite{sl_asrs,sl_mh,sl_agv}. Una \concetto{missione}
+impiega di solito più \concetto{macchine} in sequenza e per ognuna si registrano la posizione nella
+sequenza e gli istanti di inizio e fine del tratto. Di ogni \concetto{macchina} si consultano codice,
+descrizione e stato (in lavoro, in attesa, in errore, in manutenzione).
+
+\paragraph{Ordini.}
+Gli \concetto{ordini} di spedizione arrivano dal gestionale del committente, ciascuno con numero,
+cliente destinatario, data di spedizione prevista, baia di carico e stato, e con il numero di colli
+richiesto per ogni \concetto{articolo} (righe d'ordine). Per evadere un \concetto{ordine} il WMS
+sceglie le \concetto{UDC} dei lotti con scadenza più vicina (FEFO) e crea le \concetto{missioni} di
+uscita.
