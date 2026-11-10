@@ -1,5 +1,5 @@
 %---------------------------------------------------------
-\subsection{Vista B -- Glossario e schema scheletro}
+\subsection{Vista B - Glossario e schema scheletro}
 \label{sec:an-B}
 
 \begin{table}[H]
@@ -8,12 +8,10 @@
 \toprule
 \textbf{Termine} & \textbf{Descrizione} & \textbf{Sinonimi} & \textbf{Collegamenti} \\
 \midrule
-Macchina   & Macchinario reale installato presso il cliente & Apparecchiatura & Guasto, Tecnico, Componente, Intervento \\
-Guasto     & Impedimento nel corretto funzionamento di un macchinario & Allarme, errore & Macchina, Intervento \\
-Tecnico    & Addetto alla riparazione o manutenzione dei macchinari & Manutentore & Macchina, Guasto, Intervento \\
+Macchina   & Macchinario reale installato presso il cliente & Apparecchiatura & Guasto, Tecnico, Componente \\
+Guasto     & Impedimento nel corretto funzionamento di un macchinario & Allarme, errore & Macchina \\
+Tecnico    & Addetto alla riparazione o manutenzione dei macchinari & Manutentore & Macchina, Guasto \\
 Componente & Singolo pezzo che compone un macchinario & Gruppo, organo & Macchina, Ricambio \\
-Intervento & Lavoro di manutenzione svolto su una macchina & Ordine di lavoro & Macchina, Guasto, Tecnico, Ricambio \\
-Ricambio   & Pezzo disponibile nel deposito per la sostituzione & Pezzo di ricambio & Componente, Intervento \\
 \bottomrule
 \end{tabularx}
 \caption{Glossario dei concetti della vista B.}
@@ -24,28 +22,22 @@ Ricambio   & Pezzo disponibile nel deposito per la sostituzione & Pezzo di ricam
 \centering
 \begin{tikzpicture}
   % entita'
-  \node[entita] (gua) at (0,2.8)    {Guasto};
-  \node[entita] (mac) at (6.8,2.8)  {Macchina};
-  \node[entita] (com) at (13.6,2.8) {Componente};
-  \node[entita] (int) at (6.8,0)    {Intervento};
-  \node[entita] (ric) at (13.6,0)   {Ricambio};
-  \node[entita] (tec) at (6.8,-2.8) {Tecnico};
+  \node[entita] (gua) at (0,2.8)     {Guasto};
+  \node[entita] (mac) at (6.8,2.8)   {Macchina};
+  \node[entita] (com) at (13.6,2.8)  {Componente};
+  \node[entita] (tec) at (6.8,-2.8)  {Tecnico};
   % relazioni
-  \node[relazione] (seg) at (3.4,2.8)  {Segnalazione};
-  \node[relazione] (cmp) at (10.2,2.8) {Composizione};
-  \node[relazione] (man) at (6.8,1.4)  {Manutenzione};
-  \node[relazione] (cpt) at (13.6,1.4) {Compatibilità};
-  \node[relazione] (ris) at (3.4,0)    {Risoluzione};
-  \node[relazione] (uti) at (10.2,0)   {Utilizzo};
-  \node[relazione] (par) at (6.8,-1.4) {Partecipazione};
+  \node[relazione] (seg) at (3.4,2.8)   {Segnalazione};
+  \node[relazione] (cmp) at (10.2,2.8)  {Composizione};
+  \node[relazione] (man) at (6.8,0)     {Manutenzione};
+  \node[relazione] (ris) at (3.4,0)     {Risoluzione};
+  \node[relazione] (uti) at (10.2,0)    {Utilizzo};
   % collegamenti
   \draw (gua) -- (seg) -- (mac);
   \draw (mac) -- (cmp) -- (com);
-  \draw (mac) -- (man) -- (int);
-  \draw (com) -- (cpt) -- (ric);
-  \draw (gua) |- (ris) -- (int);
-  \draw (int) -- (uti) -- (ric);
-  \draw (int) -- (par) -- (tec);
+  \draw (com) -- (uti) -- (tec);
+  \draw (mac) -- (man) -- (tec);
+  \draw (gua) -- (ris) -- (tec);
 \end{tikzpicture}
 \caption{Schema scheletro della vista B.}
 \label{fig:sch-B}

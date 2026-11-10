@@ -1,57 +1,46 @@
 %---------------------------------------------------------
 \subsection{Vista B -- Tecnico dell'assistenza (manutenzione e ricambi)}
 \label{sec:req-B}
-Un \concetto{tecnico} di System Logistics riceve, tramite il contatto del cliente, richieste di
-assistenza o di manutenzione presso la sede del cliente. Una volta accolta la richiesta, si collega
-da remoto al Systore installato dal cliente e controlla innanzitutto lo stato, gli avvisi e i modelli
-installati. Ogni volta che agisce in loco sulle \concetto{macchine} del cliente apre un
-\concetto{intervento}, nel quale inserisce le ore lavorate, i nominativi dei \concetto{tecnici} che
-hanno svolto il lavoro e gli eventuali \concetto{ricambi} utilizzati. Ogni volta che torna dal cliente
-chiude l'intervento, indipendentemente dal fatto che il lavoro sia terminato o che debba tornarvi il
-giorno successivo. Inoltre, Systore avvisa System Logistics degli \concetto{interventi} preventivi
-in scadenza da programmare e dei \concetto{componenti} soggetti a usura che si avvicinano alla fine
-della loro vita utile~\cite{sl_cs}.
 
-Ogni tecnico può inoltre consultare lo storico dei \concetto{guasti} e degli \concetto{interventi}
-effettuati su ciascuna \concetto{macchina} e controllare i \concetto{ricambi} sotto scorta.
+Un tecnico di System Logistics riceve tramite contatto del cliente richieste di assistenza o di
+manutenzione presso la loro sede, una volta accolta la richiesta si collega in remoto presso il
+Systore installato dal cliente e controlla prima stato, avvisi e modelli installati. Ogni volta che
+agisce in loco presso le macchine del cliente apre un intervento, dove inserisce ore lavorate,
+nominativi di chi ha svolto il lavoro ed eventualmente ricambi utilizzati. Ogni volta che torna dal
+cliente chiude l'intervento indipendentemente se sia finito o se debba tornarci il giorno dopo.
+Inoltre Systore avvisa System Logistics di interventi preventivi in scadenza da programmare, oppure
+se alcuni componenti di facile usura sono vicini al fine vita utile.
+Ogni tecnico può inoltre consultare lo storico dei guasti e degli interventi effettuati su ogni
+macchina o controllare i ricambi sotto scorta.
 
-\paragraph{Macchine e tipi.}
-Di ogni \concetto{macchina} installata si registrano matricola, anno di installazione, posizione
-nell'impianto all'interno dello stabile del cliente e contatori di utilizzo (ore di funzionamento e
-cicli). \evid{IO}{Ogni \concetto{macchina} è un esemplare di un tipo di macchina} (modello) del
-catalogo System Logistics, con codice, categoria (traslo-elevatore, trasportatore o LGV), portata e
-velocità nominali. Per ogni tipo è definito il piano di manutenzione preventiva: un elenco di
-attività, ognuna con descrizione e periodicità (in ore di funzionamento o in giorni).
+\paragraph{Macchina.}
+Di ogni macchina installata si registrano matricola, anno di installazione, posizione nell'impianto
+all'interno dello stabile del cliente e contatori di utilizzo (ore di funzionamento e cicli). Ogni
+macchina è un esemplare di un tipo di macchina (modello) del catalogo System Logistics, con codice,
+categoria (traslo-elevatore, trasportatore, LGV), portata e velocità nominali.
 
-\paragraph{Componenti.}
-\evid{PO}{Ogni \concetto{macchina} è composta da \concetto{componenti}} sostituibili (es.\ motore,
-gruppo forche, cinghie o cuscinetti). Ogni \concetto{componente} è individuato nella
-\concetto{macchina} da un codice di posizione e ha data di montaggio, ore di funzionamento e, se
-prevista, una vita utile; quando le ore si avvicinano alla vita utile il sistema ne propone la
-sostituzione~\cite{sl_cs}.
+\paragraph{Componente.}
+Per ogni tipo è definito il piano di manutenzione preventiva: un elenco di attività, ognuna con
+descrizione e periodicità (in ore di funzionamento o in giorni). Ogni macchina è composta da
+componenti sostituibili (es.\ motore, gruppo forche, cinghie o cuscinetti). Ogni componente è
+individuato nella macchina da un codice di posizione e ha data di montaggio, ore di funzionamento e
+solo se prevista una vita utile; quando le ore si avvicinano alla vita utile il sistema ne propone la
+sostituzione.
 
-\paragraph{Guasti.}
-Quando una \concetto{macchina} si ferma per un errore, il PLC invia un allarme che il sistema registra
-come \concetto{guasto}, con istante, codice di errore, descrizione e gravità. Un \concetto{guasto}
-resta aperto finché non è risolto, ma non è detto che per risolverlo sia necessario l'intervento di
-un tecnico.
+\paragraph{Guasto.}
+Quando una macchina si ferma per un errore, il PLC invia un allarme che il sistema registra come
+guasto, con istante, codice di errore, descrizione e gravità. Un guasto resta aperto finché non è
+risolto, ma non è detto serva un tecnico per risolverlo.
+Ogni intervento riguarda una macchina o un gruppo di macchine ed ha numero, data, orari di inizio e
+fine, descrizione del lavoro ed esito. Gli interventi si distinguono in preventivi e correttivi: i
+primi svolgono le attività del piano giunte a scadenza; i secondi risolvono uno o più guasti e
+registrano la causa individuata e la durata del fermo.
+Di ogni ricambio conservato nel deposito si registrano codice, descrizione, quantità disponibile,
+scorta minima e componenti che può sostituire (in quanto un componente può sostituire più componenti
+con poche modifiche). Per ogni intervento si registrano i ricambi prelevati e le quantità; sotto la
+scorta minima il tecnico chiede il riordino alla sede.
 
-\paragraph{Interventi.}
-Ogni \concetto{intervento} (ordine di lavoro) riguarda una \concetto{macchina} o un gruppo di
-macchine e ha numero, data,
-orari di inizio e fine, descrizione del lavoro ed esito. \evid{G}{Gli \concetto{interventi} si
-distinguono in preventivi e correttivi}~\cite{en13306}: i primi svolgono le attività del piano giunte
-a scadenza; i secondi risolvono uno o più \concetto{guasti} e registrano la causa individuata e la
-durata del fermo. La \concetto{macchina} su cui si lavora può essere diversa da quella che ha
-segnalato il \concetto{guasto} (es.\ un trasportatore a monte).
-
-\paragraph{Tecnici.}
-Di ogni \concetto{tecnico} si registrano matricola, nome, cognome, telefono e specializzazione
-(meccanica, elettrica, software). A un \concetto{intervento} partecipano uno o più
-\concetto{tecnici}, ciascuno con le ore lavorate.
-
-\paragraph{Ricambi.}
-Di ogni \concetto{ricambio} conservato nel deposito si registrano codice, descrizione, scaffale,
-quantità disponibile, scorta minima e \concetto{componenti} che può sostituire. Per ogni
-\concetto{intervento} si registrano i \concetto{ricambi} prelevati e le quantità; sotto la scorta
-minima il \concetto{tecnico} chiede il riordino alla sede.
+\paragraph{Tecnico.}
+Di ogni tecnico si registrano matricola, nome, cognome, telefono e specializzazione (meccanica,
+elettrica, software). A un intervento partecipano uno o più tecnici, ciascuno con le ore lavorate,
+in quanto possono arrivare in momenti diversi della giornata.
