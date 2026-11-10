@@ -8,12 +8,12 @@
 \toprule
 \textbf{Termine} & \textbf{Descrizione} & \textbf{Sinonimi} & \textbf{Collegamenti} \\
 \midrule
-Macchina   & Esemplare in servizio nel sito  & Apparecchiatura   & Componente, Guasto, Intervento \\
-Componente & Parte sostituibile di macchina  & Gruppo, organo    & Macchina, Ricambio \\
-Guasto     & Malfunzionamento di macchina    & Allarme, errore   & Macchina, Intervento \\
-Intervento & Lavoro svolto su una macchina   & Ordine di lavoro  & Macchina, Guasto, Tecnico, Ricambio \\
-Tecnico    & Addetto all'assistenza tecnica  & Manutentore       & Intervento \\
-Ricambio   & Pezzo a scorta nel deposito     & Pezzo di ricambio & Componente, Intervento \\
+Macchina   & Macchinario reale installato presso il cliente & Apparecchiatura & Guasto, Tecnico, Componente, Intervento \\
+Guasto     & Impedimento nel corretto funzionamento di un macchinario & Allarme, errore & Macchina, Intervento \\
+Tecnico    & Addetto alla riparazione o manutenzione dei macchinari & Manutentore & Macchina, Guasto, Intervento \\
+Componente & Singolo pezzo che compone un macchinario & Gruppo, organo & Macchina, Ricambio \\
+Intervento & Lavoro di manutenzione svolto su una macchina & Ordine di lavoro & Macchina, Guasto, Tecnico, Ricambio \\
+Ricambio   & Pezzo disponibile nel deposito per la sostituzione & Pezzo di ricambio & Componente, Intervento \\
 \bottomrule
 \end{tabularx}
 \caption{Glossario dei concetti della vista B.}

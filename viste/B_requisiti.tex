@@ -1,36 +1,44 @@
 %---------------------------------------------------------
 \subsection{Vista B -- Tecnico dell'assistenza (manutenzione e ricambi)}
 \label{sec:req-B}
-Il \concetto{tecnico} del servizio di assistenza di System Logistics gestisce la manutenzione delle
-\concetto{macchine} dell'impianto e il deposito dei \concetto{ricambi} presente nel sito, secondo un
-contratto che comprende help desk, manutenzione preventiva e fornitura di
-\concetto{ricambi}~\cite{sl_cs}. Apre e chiude gli \concetto{interventi}, registrando
-\concetto{tecnici}, ore lavorate e \concetto{ricambi} usati, pianifica gli \concetto{interventi}
-preventivi in scadenza, consulta lo storico dei \concetto{guasti} e degli \concetto{interventi} di ogni
-\concetto{macchina} e controlla i \concetto{ricambi} sotto scorta e i \concetto{componenti} vicini alla
-fine della vita utile.
+Un \concetto{tecnico} di System Logistics riceve, tramite il contatto del cliente, richieste di
+assistenza o di manutenzione presso la sede del cliente. Una volta accolta la richiesta, si collega
+da remoto al Systore installato dal cliente e controlla innanzitutto lo stato, gli avvisi e i modelli
+installati. Ogni volta che agisce in loco sulle \concetto{macchine} del cliente apre un
+\concetto{intervento}, nel quale inserisce le ore lavorate, i nominativi dei \concetto{tecnici} che
+hanno svolto il lavoro e gli eventuali \concetto{ricambi} utilizzati. Ogni volta che torna dal cliente
+chiude l'intervento, indipendentemente dal fatto che il lavoro sia terminato o che debba tornarvi il
+giorno successivo. Inoltre, Systore avvisa System Logistics degli \concetto{interventi} preventivi
+in scadenza da programmare e dei \concetto{componenti} soggetti a usura che si avvicinano alla fine
+della loro vita utile~\cite{sl_cs}.
+
+Ogni tecnico può inoltre consultare lo storico dei \concetto{guasti} e degli \concetto{interventi}
+effettuati su ciascuna \concetto{macchina} e controllare i \concetto{ricambi} sotto scorta.
 
 \paragraph{Macchine e tipi.}
 Di ogni \concetto{macchina} installata si registrano matricola, anno di installazione, posizione
-nell'impianto e contatori di utilizzo (ore di funzionamento e cicli). \evid{IO}{Ogni
-\concetto{macchina} è un esemplare di un tipo di macchina} del catalogo System Logistics, con codice,
-categoria (traslo-elevatore, navetta SVL, shuttle car, trasportatore, LGV), portata e velocità
-nominali. Per ogni tipo è definito il piano di manutenzione preventiva: un elenco di attività, ognuna
-con descrizione e periodicità (in ore di funzionamento o in giorni).
+nell'impianto all'interno dello stabile del cliente e contatori di utilizzo (ore di funzionamento e
+cicli). \evid{IO}{Ogni \concetto{macchina} è un esemplare di un tipo di macchina} (modello) del
+catalogo System Logistics, con codice, categoria (traslo-elevatore, trasportatore o LGV), portata e
+velocità nominali. Per ogni tipo è definito il piano di manutenzione preventiva: un elenco di
+attività, ognuna con descrizione e periodicità (in ore di funzionamento o in giorni).
 
 \paragraph{Componenti.}
-\evid{PO}{Ogni \concetto{macchina} è composta da \concetto{componenti}} sostituibili (es.\ motore di
-traslazione, gruppo forche, inverter). Ogni \concetto{componente} è individuato nella
-\concetto{macchina} da un codice di posizione e ha data di montaggio, ore di funzionamento e vita
-utile; quando le ore si avvicinano alla vita utile il sistema ne propone la sostituzione~\cite{sl_cs}.
+\evid{PO}{Ogni \concetto{macchina} è composta da \concetto{componenti}} sostituibili (es.\ motore,
+gruppo forche, cinghie o cuscinetti). Ogni \concetto{componente} è individuato nella
+\concetto{macchina} da un codice di posizione e ha data di montaggio, ore di funzionamento e, se
+prevista, una vita utile; quando le ore si avvicinano alla vita utile il sistema ne propone la
+sostituzione~\cite{sl_cs}.
 
 \paragraph{Guasti.}
 Quando una \concetto{macchina} si ferma per un errore, il PLC invia un allarme che il sistema registra
 come \concetto{guasto}, con istante, codice di errore, descrizione e gravità. Un \concetto{guasto}
-resta aperto finché non è risolto.
+resta aperto finché non è risolto, ma non è detto che per risolverlo sia necessario l'intervento di
+un tecnico.
 
 \paragraph{Interventi.}
-Ogni \concetto{intervento} (ordine di lavoro) riguarda una \concetto{macchina} e ha numero, data,
+Ogni \concetto{intervento} (ordine di lavoro) riguarda una \concetto{macchina} o un gruppo di
+macchine e ha numero, data,
 orari di inizio e fine, descrizione del lavoro ed esito. \evid{G}{Gli \concetto{interventi} si
 distinguono in preventivi e correttivi}~\cite{en13306}: i primi svolgono le attività del piano giunte
 a scadenza; i secondi risolvono uno o più \concetto{guasti} e registrano la causa individuata e la
