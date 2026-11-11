@@ -1,42 +1,67 @@
 %---------------------------------------------------------
 \subsection{Vista C -- Analista delle prestazioni e del gemello digitale}
 \label{sec:req-C}
-L'analista monitora il comportamento dell'impianto a partire dai dati di campo e confronta le
-prestazioni reali con quelle previste dal \concetto{gemello digitale}~\cite{kritzinger2018}.
-Consulta l'andamento delle misure dei \concetto{sensori} e gli \concetto{eventi} delle
-\concetto{macchine}, calcola gli \concetto{indicatori} a fine turno, definisce gli \concetto{scenari}
-e ne avvia la simulazione, e confronta valori reali e previsti per individuare le \concetto{macchine}
-che non raggiungono gli obiettivi.
+L'analista lavora nel servizio clienti di System Logistics e segue da remoto il rendimento
+dell'impianto dopo l'avviamento~\cite{sl_cs}. Deve capire se le \concetto{macchine} lavorano come
+dovrebbero e, per farlo, mette a confronto i dati raccolti sul campo con le previsioni del
+\concetto{gemello digitale}, la copia virtuale dell'impianto su cui si fanno le
+simulazioni~\cite{kritzinger2018}. Consulta le misure dei \concetto{sensori} e gli \concetto{eventi} di
+ogni \concetto{macchina}, controlla gli \concetto{indicatori} calcolati a fine turno e ricalibra il
+\concetto{gemello digitale} quando le sue previsioni si allontanano dalla realtà. Prepara inoltre gli
+\concetto{scenari} da simulare, confronta valori reali e previsti e segnala al tecnico dell'assistenza
+le \concetto{macchine} che rendono meno del previsto. Le sue simulazioni servono anche al committente,
+che prima di un periodo di picco vuole sapere se l'impianto reggerà.
 
 \paragraph{Sensori e misure.}
-I dati di campo provengono dai \concetto{sensori}, ciascuno con codice, grandezza misurata (corrente,
-energia, temperatura, vibrazioni), unità di misura e intervallo di campionamento.
-\evid{G}{I \concetto{sensori} si distinguono in sensori di macchina, montati su una
-\concetto{macchina}, e sensori ambientali}, collocati in una zona dell'impianto (es.\ la baia di
-carico refrigerata) e con un intervallo di valori ammessi. Ogni misura riporta \concetto{sensore},
-istante e valore.
+Gran parte dei dati di campo arriva dai \concetto{sensori}. Di ognuno si registrano un codice, la
+grandezza misurata (per esempio la corrente assorbita da un motore o una temperatura), l'unità di misura
+e ogni quanto viene letto. \evid{G}{Un \concetto{sensore} può essere di macchina, se è montato su una
+\concetto{macchina}, oppure ambientale}: in questo caso controlla una zona dell'impianto e ha un
+intervallo di valori ammessi, come i termometri dell'area di stoccaggio, dove le bevande non devono
+scaldarsi troppo. Ogni lettura di un \concetto{sensore} produce una misura, con istante e valore.
 
 \paragraph{Eventi.}
-Ogni \concetto{evento} è comunicato da una \concetto{macchina} in un istante.
-\evid{G}{Gli \concetto{eventi} si distinguono in cambi di stato, allarmi e fine missione}: un
-cambio di stato riporta lo stato precedente e il nuovo (in lavoro, in attesa, in errore, in
-manutenzione), un allarme ha codice e gravità, un \concetto{evento} di fine missione indica la
-missione completata e la durata del ciclo.
+Oltre alle misure, le \concetto{macchine} comunicano degli \concetto{eventi}: li invia il controllore di
+bordo (PLC) attraverso SYSTORE, ognuno con il proprio istante. \evid{G}{Gli \concetto{eventi} si dividono in cambi di stato, allarmi e fine missione}. Un
+cambio di stato registra lo stato lasciato e quello nuovo (in lavoro, in attesa, in errore, in
+manutenzione). Un allarme ha un codice e una gravità, che va dal semplice avviso fino al blocco della
+\concetto{macchina}. Un \concetto{evento} di fine missione indica la missione che la
+\concetto{macchina} ha appena concluso.
 
 \paragraph{Indicatori.}
-Da \concetto{eventi} e misure si calcolano gli \concetto{indicatori} di prestazione
-(KPI)~\cite{iso22400}, come disponibilità, throughput (UDC movimentate all'ora), tempo medio di ciclo
-ed energia per missione. Ogni \concetto{indicatore} ha codice, nome, formula, unità di misura, valore
-obiettivo e soglia di scostamento ammessa, ed è calcolato a fine turno per ogni \concetto{macchina}.
+Gli \concetto{indicatori} di prestazione (KPI)~\cite{iso22400} sono definiti una volta sola, ciascuno con
+codice, nome, formula di calcolo e unità di misura: si usano la disponibilità, il throughput (UDC
+movimentate all'ora), il tempo medio di ciclo e l'energia consumata per missione. Alla fine di ogni
+turno, individuato da data e fascia oraria, il sistema calcola il valore reale di ogni
+\concetto{indicatore} per ogni \concetto{macchina}: la disponibilità deriva dalla durata degli stati,
+throughput e tempo di ciclo dalle missioni concluse, l'energia dalle misure dei \concetto{sensori}. Il
+termine di paragone è il valore previsto dal \concetto{gemello digitale}: ogni \concetto{indicatore} ha
+una soglia che dice di quanto il valore reale può allontanarsene prima che la \concetto{macchina} venga
+segnalata. Se per esempio la soglia della disponibilità è di tre punti e la previsione è del 96\%, un
+valore reale del 92\% fa scattare la segnalazione. Alcuni \concetto{indicatori}, come la disponibilità,
+hanno anche un valore obiettivo fissato nel contratto di assistenza.
 
-\paragraph{Gemello digitale e scenari.}
-Il \concetto{gemello digitale} è il modello di simulazione dell'impianto, alimentato dai dati di campo,
-e contiene i parametri di funzionamento di ogni \concetto{macchina} (velocità, accelerazioni, tempi di
-presa e deposito). Ogni sua versione ha numero, data di calibrazione, errore medio rispetto ai dati
-reali e livello di integrazione con l'impianto (modello digitale, ombra digitale o gemello
-digitale~\cite{kritzinger2018}). L'analista definisce \concetto{scenari}, ciascuno con nome,
-descrizione e condizioni ipotizzate (profilo degli ordini, \concetto{macchine} fuori servizio,
-parametri modificati). \evid{IO}{Ogni simulazione è un'esecuzione concreta di uno
-\concetto{scenario}} su una versione del \concetto{gemello digitale}, con data e durata, e produce il
-valore previsto di ogni \concetto{indicatore} per ogni \concetto{macchina}, da confrontare con il
-valore reale.
+\paragraph{Gemello digitale.}
+Il \concetto{gemello digitale} riproduce in simulazione le \concetto{macchine} dell'impianto e il loro
+funzionamento. Ogni volta che viene ricalibrato sui dati di campo ne nasce una nuova versione, con numero
+progressivo, data di calibrazione ed errore medio delle previsioni rispetto ai valori reali.
+\evid{PO}{Ogni versione del \concetto{gemello digitale} è composta dalle repliche virtuali delle singole
+\concetto{macchine}}: una replica corrisponde a una \concetto{macchina} e ne contiene i parametri di
+funzionamento (velocità, accelerazioni, tempi di presa e deposito), che possono cambiare da una versione
+all'altra. Per ogni versione si indica anche il livello di integrazione con
+l'impianto~\cite{kritzinger2018}: modello digitale se i dati sono scambiati a mano, ombra digitale se
+arrivano in automatico dall'impianto alla simulazione, gemello vero e proprio se viaggiano in automatico
+nei due sensi.
+
+\paragraph{Scenari e simulazioni.}
+Uno \concetto{scenario} stabilisce le condizioni in cui far lavorare il \concetto{gemello digitale}. Ha
+un nome, una descrizione e le condizioni ipotizzate, come un diverso profilo degli ordini o la modifica
+di alcune repliche, per simulare il fermo di una \concetto{macchina} o una velocità maggiore. Lo
+\concetto{scenario} di riferimento riproduce le condizioni effettive di ogni turno e serve al confronto
+quotidiano: dagli scarti tra le sue previsioni e i valori reali si ricava anche l'errore medio di ogni
+versione. Gli altri \concetto{scenari} sono ipotesi del tipo «cosa succede se», come un picco di ordini
+prima dell'estate o l'aggiunta di un turno notturno. \evid{IO}{Ogni simulazione è un'esecuzione
+concreta di uno \concetto{scenario}} su una versione del \concetto{gemello digitale}, con data e durata,
+e restituisce il valore previsto di ogni \concetto{indicatore} per ogni \concetto{macchina}. La
+simulazione resta legata alla versione usata, così si possono confrontare previsioni ottenute con
+calibrazioni diverse.

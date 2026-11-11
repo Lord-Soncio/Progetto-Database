@@ -52,6 +52,11 @@
 \newcommand{\evid}[2]{\textcolor{col#1}{\textbf{#2}}\,\etichetta{#1}}
 % Colonna di testo allineata a sinistra per tabularx
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+% Bibliografia: per ora esclusa dal PDF (da reintrodurre a fine progetto con \bibliografiatrue).
+% Finche' e' esclusa, i \cite restano nel sorgente ma non stampano nulla.
+\newif\ifbibliografia
+\bibliografiafalse
+\ifbibliografia\else\AtBeginDocument{\renewcommand{\cite}[1]{\unskip}}\fi
 % Stili degli schemi scheletro: rettangolo = entita', rombo = relazione
 \tikzset{
   entita/.style={draw, semithick, rectangle, minimum width=2.5cm, minimum height=0.8cm, font=\small},
@@ -104,10 +109,12 @@ vista; le frasi evidenziate indicano \evid{IO}{relazioni instance-of}, \evid{PO}
 \input{viste/B_analisi}
 \input{viste/C_analisi}
 
+\ifbibliografia
 \newpage
 \addcontentsline{toc}{section}{\refname}
 \bibliographystyle{apalike}
 \bibliography{ref}
+\fi
 
 \end{document}
 

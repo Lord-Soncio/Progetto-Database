@@ -25,19 +25,19 @@ Componente & Singolo pezzo che compone un macchinario & Gruppo, organo & Macchin
   \node[entita] (gua) at (0,2.8)     {Guasto};
   \node[entita] (mac) at (6.8,2.8)   {Macchina};
   \node[entita] (com) at (13.6,2.8)  {Componente};
-  \node[entita] (tec) at (6.8,-2.8)  {Tecnico};
+  \node[entita] (tec) at (6.8,0)     {Tecnico};
   % relazioni
   \node[relazione] (seg) at (3.4,2.8)   {Segnalazione};
   \node[relazione] (cmp) at (10.2,2.8)  {Composizione};
-  \node[relazione] (man) at (6.8,0)     {Manutenzione};
+  \node[relazione] (man) at (6.8,1.4)   {Manutenzione};
   \node[relazione] (ris) at (3.4,0)     {Risoluzione};
   \node[relazione] (uti) at (10.2,0)    {Utilizzo};
   % collegamenti
   \draw (gua) -- (seg) -- (mac);
   \draw (mac) -- (cmp) -- (com);
-  \draw (com) -- (uti) -- (tec);
+  \draw (com) |- (uti) -- (tec);
   \draw (mac) -- (man) -- (tec);
-  \draw (gua) -- (ris) -- (tec);
+  \draw (gua) |- (ris) -- (tec);
 \end{tikzpicture}
 \caption{Schema scheletro della vista B.}
 \label{fig:sch-B}

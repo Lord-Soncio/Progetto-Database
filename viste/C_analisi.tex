@@ -4,16 +4,16 @@
 
 \begin{table}[H]
 \centering\small
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.0cm} Y >{\raggedright\arraybackslash}p{3.4cm} >{\raggedright\arraybackslash}p{5.4cm}@{}}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.0cm} Y >{\raggedright\arraybackslash}p{3.4cm} >{\raggedright\arraybackslash}p{4.8cm}@{}}
 \toprule
 \textbf{Termine} & \textbf{Descrizione} & \textbf{Sinonimi} & \textbf{Collegamenti} \\
 \midrule
-Macchina         & Fonte di eventi e misure          & --                     & Sensore, Evento, Indicatore, Gemello digitale \\
-Sensore          & Dispositivo di misura             & Trasduttore            & Macchina \\
-Evento           & Fatto comunicato da una macchina  & Notifica, segnale      & Macchina \\
-Indicatore       & Misura sintetica di prestazione   & KPI, prestazione       & Macchina, Scenario \\
-Scenario         & Condizioni ipotetiche da simulare & Ipotesi, caso what-if  & Indicatore, Gemello digitale \\
-Gemello digitale & Replica virtuale dell'impianto    & Modello di simulazione & Macchina, Scenario \\
+Macchina         & Fonte di eventi e misure             & --                     & Sensore, Evento, Indicatore, Gemello digitale \\
+Sensore          & Dispositivo che misura una grandezza & Trasduttore            & Macchina \\
+Evento           & Fatto comunicato da una macchina     & Notifica, segnale      & Macchina \\
+Indicatore       & Grandezza di prestazione per turno   & KPI, prestazione       & Macchina, Scenario \\
+Scenario         & Insieme di condizioni da simulare    & Ipotesi, caso what-if  & Indicatore, Gemello digitale \\
+Gemello digitale & Copia virtuale dell'impianto         & Modello di simulazione & Macchina, Scenario \\
 \bottomrule
 \end{tabularx}
 \caption{Glossario dei concetti della vista C.}
@@ -24,19 +24,19 @@ Gemello digitale & Replica virtuale dell'impianto    & Modello di simulazione & 
 \centering
 \begin{tikzpicture}
   % entita'
-  \node[entita] (eve) at (6.8,2.8)   {Evento};
+  \node[entita] (eve) at (6.8,2.5)   {Evento};
   \node[entita] (sen) at (0,0)       {Sensore};
   \node[entita] (mac) at (6.8,0)     {Macchina};
   \node[entita, minimum width=2.9cm] (gem) at (13.6,0) {Gemello digitale};
-  \node[entita] (ind) at (6.8,-2.8)  {Indicatore};
-  \node[entita] (sce) at (13.6,-2.8) {Scenario};
+  \node[entita] (ind) at (6.8,-2.5)  {Indicatore};
+  \node[entita] (sce) at (13.6,-2.5) {Scenario};
   % relazioni
-  \node[relazione] (gen) at (6.8,1.4)   {Generazione};
-  \node[relazione] (ins) at (3.4,0)     {Installazione};
-  \node[relazione] (rap) at (10.2,0)    {Rappresentazione};
-  \node[relazione] (cal) at (6.8,-1.4)  {Calcolo};
-  \node[relazione] (sim) at (13.6,-1.4) {Simulazione};
-  \node[relazione] (pre) at (10.2,-2.8) {Previsione};
+  \node[relazione] (gen) at (6.8,1.25)   {Generazione};
+  \node[relazione] (ins) at (3.4,0)      {Installazione};
+  \node[relazione] (rap) at (10.2,0)     {Rappresentazione};
+  \node[relazione] (cal) at (6.8,-1.25)  {Calcolo};
+  \node[relazione] (sim) at (13.6,-1.25) {Simulazione};
+  \node[relazione] (pre) at (10.2,-2.5)  {Previsione};
   % collegamenti
   \draw (eve) -- (gen) -- (mac);
   \draw (sen) -- (ins) -- (mac);
