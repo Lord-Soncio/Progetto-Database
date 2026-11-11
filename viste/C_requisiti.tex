@@ -1,11 +1,11 @@
 %---------------------------------------------------------
 \subsection{Vista C -- Analista delle prestazioni e del gemello digitale}
 \label{sec:req-C}
-L'analista lavora nel servizio clienti di System Logistics e segue da remoto il rendimento
+L'analista lavora come gestore di progetto relativo ad un singolo committente di System Logistics e segue da remoto il rendimento
 dell'impianto dopo l'avviamento~\cite{sl_cs}. Deve capire se le \concetto{macchine} lavorano come
 dovrebbero e, per farlo, mette a confronto i dati raccolti sul campo con le previsioni del
-\concetto{gemello digitale}, la copia virtuale dell'impianto su cui si fanno le
-simulazioni~\cite{kritzinger2018}. Consulta le misure dei \concetto{sensori} e gli \concetto{eventi} di
+\concetto{gemello digitale} (la copia virtuale dell'impianto su cui si fanno le
+simulazioni). Consulta le misure dei \concetto{sensori} e gli \concetto{eventi} di
 ogni \concetto{macchina}, controlla gli \concetto{indicatori} calcolati a fine turno e ricalibra il
 \concetto{gemello digitale} quando le sue previsioni si allontanano dalla realtà. Prepara inoltre gli
 \concetto{scenari} da simulare, confronta valori reali e previsti e segnala al tecnico dell'assistenza
@@ -29,8 +29,8 @@ manutenzione). Un allarme ha un codice e una gravità, che va dal semplice avvis
 \concetto{macchina} ha appena concluso.
 
 \paragraph{Indicatori.}
-Gli \concetto{indicatori} di prestazione (KPI)~\cite{iso22400} sono definiti una volta sola, ciascuno con
-codice, nome, formula di calcolo e unità di misura: si usano la disponibilità, il throughput (UDC
+Gli \concetto{indicatori} di prestazione (KPI) sono definiti una volta sola. Ciascuno con
+codice, nome, formula di calcolo e unità di misura. Si usano la disponibilità, il throughput (UDC
 movimentate all'ora), il tempo medio di ciclo e l'energia consumata per missione. Alla fine di ogni
 turno, individuato da data e fascia oraria, il sistema calcola il valore reale di ogni
 \concetto{indicatore} per ogni \concetto{macchina}: la disponibilità deriva dalla durata degli stati,

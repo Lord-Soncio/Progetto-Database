@@ -19,11 +19,11 @@ all'interno dello stabile del committente e contatori di utilizzo (ore di funzio
 categoria (traslo-elevatore, trasportatore, LGV), portata e velocità nominali.
 
 \paragraph{Componente.}
-Per ogni tipo è definito il piano di manutenzione preventiva: un elenco di attività, ognuna con
+Per ogni tipo di macchina è definito il piano di manutenzione preventiva, ovvero un elenco di attività, ognuna con
 descrizione e periodicità (in ore di funzionamento o in giorni). \evid{PO}{Ogni \concetto{macchina} è composta da
 \concetto{componenti}} sostituibili (es.\ motore, gruppo forche, cinghie o cuscinetti). Ogni \concetto{componente} è
-individuato nella \concetto{macchina} da un codice di posizione e ha data di montaggio, ore di funzionamento e
-solo se prevista una vita utile; quando le ore si avvicinano alla vita utile il sistema ne propone la
+individuato nella \concetto{macchina} da un codice di posizione e ha data di montaggio, ore di funzionamento e,
+solo se prevista, una vita utile. Quando le ore si avvicinano alla vita utile il sistema ne propone la
 sostituzione.
 
 \paragraph{Guasto.}
@@ -31,7 +31,7 @@ Quando una \concetto{macchina} si ferma per un errore, il PLC invia un allarme c
 \concetto{guasto}, con istante, codice di errore, descrizione e gravità. Un \concetto{guasto} resta aperto finché non è
 risolto, ma non è detto serva un \concetto{tecnico} per risolverlo.
 Ogni intervento riguarda una \concetto{macchina} o un gruppo di \concetto{macchine} ed ha numero, data, orari di inizio e
-fine, descrizione del lavoro ed esito. \evid{G}{Gli interventi si distinguono in preventivi e correttivi}: i primi svolgono le attività del piano giunte a scadenza; i secondi risolvono uno o più \concetto{guasti} e registrano la causa individuata e la durata del fermo.
+fine, descrizione del lavoro ed esito. \evid{G}{Gli interventi si distinguono in preventivi e correttivi}: i primi svolgono le attività del piano giunte a scadenza, mentre i secondi risolvono uno o più \concetto{guasti} e registrano la causa individuata e la durata del fermo.
 Di ogni ricambio conservato nel deposito si registrano codice, descrizione, quantità disponibile,
 scorta minima e \concetto{componenti} che può sostituire (in quanto un \concetto{componente} può sostituire più \concetto{componenti}
 con poche modifiche). Per ogni intervento si registrano i ricambi prelevati e le quantità; sotto la
