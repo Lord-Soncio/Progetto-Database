@@ -1,0 +1,14 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.jj": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/c:\\Users\\Emanuele\\Documents\\Emanuele\\Scuola\\Uni\\2anno\\Basi di dati\\project CB\\Progetto Github\\Progetto-Database\\viste\\A_analisi.aux": true,
+        "**/c:\\Users\\Emanuele\\Documents\\Emanuele\\Scuola\\Uni\\2anno\\Basi di dati\\project CB\\Progetto Github\\Progetto-Database\\viste\\A_analisi.log": true,
+        "**/c:\\Users\\Emanuele\\Documents\\Emanuele\\Scuola\\Uni\\2anno\\Basi di dati\\project CB\\Progetto Github\\Progetto-Database\\viste\\A_analisi.gz": true,
+        "**/c:\\Users\\Emanuele\\Documents\\Emanuele\\Scuola\\Uni\\2anno\\Basi di dati\\project CB\\Progetto Github\\Progetto-Database\\viste\\A_analisi.out": true
+    }
+}
