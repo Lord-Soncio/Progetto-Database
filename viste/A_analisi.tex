@@ -33,21 +33,19 @@ Ordine     & Richiesta di spedizione         & Ordine di spedizione    & Articol
   % relazioni
   \node[relazione] (ric) at (3.4,2.8)   {Richiesta};
   \node[relazione] (con) at (0,1.4)     {Contenuto};
-  \node[relazione] (eva) at (6.8,1.4)   {Evasione};
-  \node[relazione] (mov) at (3.4,0)     {Movimentazione};
+  \node[relazione] (com) at (6.8,1.4)   {Completamento};
+  \node[relazione] (sel) at (3.4,0)     {Selezione};
   \node[relazione] (ese) at (10.2,0)    {Esecuzione};
   \node[relazione] (col) at (0,-1.4)    {Collocazione};
-  \node[relazione] (ori) at (6.0,-1.05) {Origine};
-  \node[relazione] (des) at (7.8,-2.0)  {Destinazione};
+  \node[relazione] (cam) at (6.8,-1.4)  {Cammino};
   % collegamenti
   \draw (art) -- (ric) -- (ord);
   \draw (art) -- (con) -- (udc);
-  \draw (ord) -- (eva) -- (mis);
-  \draw (udc) -- (mov) -- (mis);
+  \draw (ord) -- (com) -- (mis);
+  \draw (udc) -- (sel) -- (mis);
   \draw (mis) -- (ese) -- (mac);
   \draw (udc) -- (col) |- (ubi.west);
-  \draw ([xshift=-0.8cm]mis.south) -- (ori) |- ([yshift=0.2cm]ubi.east);
-  \draw ([xshift=1.0cm]mis.south) -- (des) |- ([yshift=-0.2cm]ubi.east);
+  \draw (mis) -- (cam) |- (ubi.east);
 \end{tikzpicture}
 \caption{Schema scheletro della vista A.}
 \label{fig:sch-A}

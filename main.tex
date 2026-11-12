@@ -34,7 +34,6 @@
 \renewcommand{\familydefault}{\sfdefault}
 \sectionfont{\fontfamily{RobotoSlab-TLF}\selectfont}
 \captionsetup{font=small}
-\usepackage{xurl} % URL della bibliografia spezzabili in ogni punto
 % Paragrafi dei requisiti piu' compatti (ridefinito dopo sectsty, che altrimenti impone 3.25ex)
 \makeatletter
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}{1.2ex \@plus .4ex \@minus .2ex}{-0.6em}{\normalfont\normalsize\bfseries\color{black}}}
@@ -53,11 +52,6 @@
 \newcommand{\evid}[2]{\textcolor{col#1}{\textbf{#2}}\,\etichetta{#1}}
 % Colonna di testo allineata a sinistra per tabularx
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
-% Bibliografia: per ora esclusa dal PDF (da reintrodurre a fine progetto con \bibliografiatrue).
-% Finche' e' esclusa, i \cite restano nel sorgente ma non stampano nulla.
-\newif\ifbibliografia
-\bibliografiafalse
-\ifbibliografia\else\AtBeginDocument{\renewcommand{\cite}[1]{\unskip}}\fi
 % Stili degli schemi scheletro: rettangolo = entita', rombo = relazione
 \tikzset{
   entita/.style={draw, semithick, rectangle, minimum width=2.5cm, minimum height=0.8cm, font=\small},
@@ -75,7 +69,7 @@
 
 \addcontentsline{toc}{section}{Introduzione}
 \section*{Introduzione}
-System Logistics S.p.A. presenta come core business la creazione impianti intra logistici automatici, per settori alimentari, come fruizione di cibo e bevande e per la grande distribuzione. 
+System Logistics S.p.A.~\cite{sl_web} presenta come core business la creazione di impianti intralogistici automatici, per settori alimentari, come fruizione di cibo e bevande e per la grande distribuzione. 
 Un tipico sistema prodotto da loro comprende magazzini automatici serviti da traslo-elevatori, sistemi di trasporto (come trasportatori a rulli e a catene), veicoli a guida automatica e stazioni di picking, governati da un software centrale chiamato SYSTORE. 
 Una volta avviato il sistema, l’azienda fornisce assistenza sotto forma di help desk, manutenzione e fornitura di ricambi.
 
@@ -93,7 +87,7 @@ Saranno quindi considerate tre classi di utenti distinti: il responsabile delle 
 \label{sec:requisiti}
 \textbf{Legenda.} Nel testo dei requisiti il \concetto{corsivo} indica i concetti del glossario della
 vista; le frasi evidenziate indicano \evid{IO}{relazioni instance-of}, \evid{PO}{relazioni part-of} e
-\evid{G}{gerarchie}.
+\evid{G}{gerarchie}, come definite in~\cite{atzeni2018}.
 
 \input{viste/A_requisiti}
 \input{viste/B_requisiti}
@@ -107,12 +101,11 @@ vista; le frasi evidenziate indicano \evid{IO}{relazioni instance-of}, \evid{PO}
 \input{viste/B_analisi}
 \input{viste/C_analisi}
 
-\ifbibliografia
+% Bibliografia: stampa solo le voci di ref.bib citate nel testo (serve bibtex per compilare).
 \newpage
 \addcontentsline{toc}{section}{\refname}
 \bibliographystyle{apalike}
 \bibliography{ref}
-\fi
 
 \end{document}
 

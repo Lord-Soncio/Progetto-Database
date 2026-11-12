@@ -3,7 +3,7 @@
 \label{sec:req-A}
 Il responsabile delle operazioni di magazzino gestisce i flussi fisici della merce, ed è un dipendente
 del committente che lavora con il Warehouse Management System (WMS) del software
-SYSTORE~\cite{sl_systore}. Registra l'arrivo delle \concetto{unità di carico} dalla produzione,
+SYSTORE. Registra l'arrivo delle \concetto{unità di carico} dalla produzione,
 consulta le giacenze di ogni \concetto{articolo} e \concetto{ubicazione}, blocca e sblocca i lotti, rilascia gli \concetto{ordini} di spedizione e
 controlla le \concetto{missioni} in corso su ogni \concetto{macchina}.
 
@@ -16,15 +16,15 @@ stesso prodotto. Presenta inoltre la data di produzione e di scadenza.
 
 \paragraph{Unità di carico.}
 La merce è spostata e sistemata su \evid{G}{\concetto{unità di carico}, le quali si dividono in pallet
-e contenitori}, questi ultimi presenti solo nelle aree di picking. Ogni unità ha un codice univoco, un
-tipo, un'altezza e un peso misurati al ricevimento. Solitamente \evid{G}{le unità contengono un solo tipo di
-\concetto{articolo}, ma in fase di picking è possibile comporre un pallet inserendone più di uno}; per
-ogni \concetto{articolo} selezionato si registrano lotto e numero di elementi.
+e contenitori}, questi ultimi presenti solo nelle aree di picking. Ogni unità ha un codice univoco e un
+peso misurato al ricevimento. Un pallet ha sempre anche le sue dimensioni di ingombro (lunghezza,
+larghezza e altezza). Per ogni \concetto{articolo} contenuto in un'unità si registrano lotto e numero
+di elementi.
 
 \paragraph{Ubicazioni.}
 Un'\concetto{ubicazione} è una posizione che può ospitare una \concetto{unità di carico}, con un
 codice univoco e uno stato (libera, occupata o bloccata). \evid{G}{Le \concetto{ubicazioni} si
-dividono in celle e baie}. \evid{PO}{Il magazzino è diviso in corridoi}, ognuno servito da un traslo-elevatore, e
+dividono in celle e baie}. Il magazzino è diviso in corridoi, ognuno servito da un traslo-elevatore, e
 \evid{PO}{ogni corridoio è composto da celle}: una cella è individuata nel corridoio da lato, colonna,
 livello e profondità, ha altezza e portata massime e ospita al più una \concetto{unità di carico}. Le
 baie sono i punti di scambio con l'esterno del magazzino e hanno un tipo, che ne specifica il compito
@@ -42,7 +42,7 @@ correttezza del prodotto; le seconde la portano da una cella a una baia per evad
 posizione nella sequenza e gli istanti di inizio e fine del tratto.
 
 \paragraph{Macchine.}
-Le \concetto{missioni} sono eseguite dalle \concetto{macchine} dell'impianto: \evid{G}{ognuna di esse appartiene ad un modello scelto tra traslo-elevatori, trasportatori e veicoli laser
+Le \concetto{missioni} sono eseguite dalle \concetto{macchine} dell'impianto, \evid{G}{che si dividono in traslo-elevatori, trasportatori e veicoli laser
 comandati}. Di ogni \concetto{macchina} si consultano codice, descrizione e
 stato (in lavoro, in attesa, in errore, in manutenzione).
 

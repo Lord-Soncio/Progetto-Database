@@ -4,7 +4,7 @@
 
 Un \concetto{tecnico} di System Logistics riceve tramite contatto del committente richieste di assistenza o di
 manutenzione presso la loro sede, una volta accolta la richiesta si collega in remoto presso il
-SYSTORE installato dal committente e controlla prima stato, avvisi e modelli installati. Ogni volta che
+SYSTORE installato dal committente e controlla prima stato, avvisi e \concetto{macchine} installate. Ogni volta che
 agisce in loco presso le \concetto{macchine} del committente apre un intervento, dove inserisce ore lavorate,
 nominativi di chi ha svolto il lavoro ed eventualmente ricambi utilizzati. Ogni volta che torna dal
 committente chiude l'intervento indipendentemente se sia finito o se debba tornarci il giorno dopo.
@@ -13,20 +13,21 @@ se alcuni \concetto{componenti} di facile usura sono vicini al fine vita utile.
 Ogni \concetto{tecnico} può inoltre consultare lo storico dei \concetto{guasti} e degli interventi effettuati su ogni
 \concetto{macchina} o controllare i ricambi sotto scorta.
 
-\paragraph{Macchina.}
-Di ogni \concetto{macchina} installata si registrano matricola, anno di installazione, posizione nell'impianto
-all'interno dello stabile del committente e contatori di utilizzo (ore di funzionamento e cicli). \evid{IO}{Ogni \concetto{macchina} è un esemplare di un tipo di macchina (modello)} del catalogo System Logistics, con codice,
-categoria (traslo-elevatore, trasportatore, LGV), portata e velocità nominali.
+\paragraph{Macchine.}
+Ogni \concetto{macchina} è progettata su misura per l'impianto: di ognuna si registrano matricola, anno di
+installazione, posizione nell'impianto all'interno dello stabile del committente, portata e velocità
+nominali e contatori di utilizzo (ore di funzionamento e cicli). \evid{G}{Le \concetto{macchine} si
+dividono in traslo-elevatori, trasportatori e LGV}.
 
-\paragraph{Componente.}
-Per ogni tipo di macchina è definito il piano di manutenzione preventiva, ovvero un elenco di attività, ognuna con
+\paragraph{Componenti.}
+Per ogni \concetto{macchina} è definito il piano di manutenzione preventiva, ovvero un elenco di attività, ognuna con
 descrizione e periodicità (in ore di funzionamento o in giorni). \evid{PO}{Ogni \concetto{macchina} è composta da
 \concetto{componenti}} sostituibili (es.\ motore, gruppo forche, cinghie o cuscinetti). Ogni \concetto{componente} è
 individuato nella \concetto{macchina} da un codice di posizione e ha data di montaggio, ore di funzionamento e,
 solo se prevista, una vita utile. Quando le ore si avvicinano alla vita utile il sistema ne propone la
 sostituzione.
 
-\paragraph{Guasto.}
+\paragraph{Guasti.}
 Quando una \concetto{macchina} si ferma per un errore, il PLC invia un allarme che il sistema registra come
 \concetto{guasto}, con istante, codice di errore, descrizione e gravità. Un \concetto{guasto} resta aperto finché non è
 risolto, ma non è detto serva un \concetto{tecnico} per risolverlo.
@@ -37,7 +38,7 @@ scorta minima e \concetto{componenti} che può sostituire (in quanto un \concett
 con poche modifiche). Per ogni intervento si registrano i ricambi prelevati e le quantità; sotto la
 scorta minima il \concetto{tecnico} chiede il riordino alla sede.
 
-\paragraph{Tecnico.}
+\paragraph{Tecnici.}
 Di ogni \concetto{tecnico} si registrano matricola, nome, cognome, telefono e specializzazione (meccanica,
 elettrica, software). A un intervento partecipano uno o più \concetto{tecnici}, ciascuno con le ore lavorate,
 in quanto possono arrivare in momenti diversi della giornata.
